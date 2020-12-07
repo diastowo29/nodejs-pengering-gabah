@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize')
-const gabahModel = require('./models/gabah-status')
-// const lampModel = require('./models/lamp_model')
-// const voltModel = require('./models/voltage_model')
-// const floodModel = require('./models/flood_model')
+const gabahStatusModel = require('./models/gabah-status')
+const gabahPingModel = require('./models/gabah-ping')
 
 var sequelize_db;
 
@@ -26,10 +24,8 @@ if (process.env.DATABASE_URL === undefined) {
 }
 
 
-const gabah_table = gabahModel(sequelize_db, Sequelize)
-// const lamp_table = lampModel(sequelize_db, Sequelize)
-// const volt_table = voltModel(sequelize_db, Sequelize)
-// const flood_table = floodModel(sequelize_db, Sequelize)
+const gabah_table = gabahStatusModel(sequelize_db, Sequelize)
+const gabah_ping_table = gabahPingModel(sequelize_db, Sequelize)
 
 sequelize_db.sync()
   .then(() => {
@@ -37,9 +33,6 @@ sequelize_db.sync()
     })
 
 module.exports = {
-	gabah_table
-    // parking_table,
-    // lamp_table,
-    // volt_table,
-    // flood_table
+	gabah_table,
+	gabah_ping_table
 }

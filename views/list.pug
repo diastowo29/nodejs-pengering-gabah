@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  .row
+    .col-md-4
+      table(class="table table-stripped")
+        thead
+          tr
+            th Suhu
+            th Kadar Air Objek
+            th Kadar Air Humidity dan Moisture
+            th Kelembapan
+            th PWM Heater
+        tbody
+          each gabah in gabah_ping
+            tr
+              td=gabah.dataValues.suhu + ' C'
+              td=gabah.dataValues.kadar_air_objek
+              td=gabah.dataValues.kadar_air_humidity
+              td=gabah.dataValues.kelembapan
+              td=gabah.dataValues.pwm_heater
+
+  
+  script(src="/javascripts/gabah-fe.js")

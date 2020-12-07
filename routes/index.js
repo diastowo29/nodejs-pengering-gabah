@@ -1,5 +1,6 @@
 var express = require('express');
-const { gabah_table } = require('../sequelize')
+const gabahPing = require('../models/gabah-ping');
+const { gabah_table, gabah_ping_table } = require('../sequelize')
 var router = express.Router();
 
 /* GET home page. */
@@ -8,13 +9,25 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/list', function(req, res, next) {
-  res.render('list');
+  gabah_ping_table.findAll().then(all_gabah_ping => {
+    res.render('list', {
+			title: 'Dashboard',
+			gabah_ping: all_gabah_ping
+		});
+  })
 })
 
-router.get('/status', function(req, res, next) {
-  console.log(req.query)
+router.get('/status/:humidity/:kelembaban/:pwm', function(req, res, next) {
   gabah_table.findOne().then(all_gabah => {
     dData = all_gabah
+    gabah_ping_table.create({
+      kadar_air_objek: dData.kadar_air_objek,
+      suhu: dData.suhu,
+      status_mesin: dData.status_mesin,
+      kadar_air_humidity: req.params.humidity,
+      kelembapan: req.params.kelembaban,
+      pwm_heater: req.params.pwm
+    });
     res.status(200).send({
       kadar_air_objek: dData.kadar_air_objek,
       suhu: dData.suhu,
@@ -23,9 +36,11 @@ router.get('/status', function(req, res, next) {
   });
 })
 
+router.get('/clearall', function(req, res, next) {
+  res.send({});
+})
+
 router.post('/update', function(req, res, next) {
-  // res.render('list');
-  
   console.log(req.body)
   gabah_table.findOne().then(all_gabah => {
     dData = all_gabah

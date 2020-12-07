@@ -1,5 +1,3 @@
-console.log('gabahhhh')
-
 var defKadar = "12.5";
 var defSuhu = "55";
 var defStatus = "stop";
