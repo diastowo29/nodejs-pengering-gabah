@@ -7,16 +7,16 @@ block content
     .col-md-12
       label Setpoint Kadar Air
     .col-md-3.form-inline
-      input(class="form-control" type="number" style="margin-right: 10px;" value=0)
-      input(class="form-control btn-primary" type="button" value="Kirim")
+      input(class="form-control" id="kadar_input" type="number" style="margin-right: 10px;" value=0)
+      input(class="form-control btn-primary" type="button" value="Kirim" onclick="kadarSend()")
     .col-md-12
       label Referensi Suhu
     .col-md-3.form-inline.form-group
-      input(class="form-control" type="number" style="margin-right: 10px;" value=0)
-      input(class="form-control btn-primary" type="button" value="Kirim")
+      input(class="form-control" id="suhu_input" type="number" style="margin-right: 10px;" value=0)
+      input(class="form-control btn-primary" type="button" value="Kirim" onclick="suhuSend()")
     .col-md-12.form-inline.form-group
-      input(class="form-control btn-primary inline-space" type="button" value="Start")
-      input(class="form-control btn-danger inline-space" type="button" value="Stop")
+      input(class="form-control btn-primary inline-space" type="button" value="Start" onclick="startSend()")
+      input(class="form-control btn-danger inline-space" type="button" value="Stop" onclick="stopSend()")
       input(class="form-control btn-primary inline-space" type="button" value="Clear")
       input(class="form-control btn-primary" type="button" value="Database")
     .col-md-6
@@ -35,3 +35,6 @@ block content
             td 0
             td 0
             td 0
+
+  
+  script(src="/javascripts/gabah-fe.js")

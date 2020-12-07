@@ -22,4 +22,29 @@ router.get('/status', function(req, res, next) {
   });
 })
 
+router.get('/new', function(req, res, next) {
+  // res.render('list');
+  // gabah_table.create({
+  //   kadar_air_objek: "12.5",
+  //   suhu: "55",
+  //   status_mesin: "stop"
+  // }).then(created_status => {
+  //   res.status(200).send(created_status);
+  // });
+  console.log(req)
+  res.status(200).send({created: true});
+
+})
+
+router.get('/insert', function(req, res, next) {
+  // res.render('list');
+  gabah_table.create({
+    kadar_air_objek: "12.5",
+    suhu: "55",
+    status_mesin: "stop"
+  }).then(created_status => {
+    res.status(200).send(created_status);
+  });
+})
+
 module.exports = router;
