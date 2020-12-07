@@ -1,17 +1,45 @@
 console.log('gabahhhh')
 
+var defKadar = "12.5";
+var defSuhu = "55";
+var defStatus = "stop";
+
 function kadarSend () {
-    console.log($('#kadar_input').val())
+    defKadar = $('#kadar_input').val();
+    if (defKadar == "0") {
+        defKadar = "12.5"
+    }
+    updateGabah({kadar_air_objek: defKadar})
 }
 
 function suhuSend () {
-    console.log($('#suhu_input').val())
+    defSuhu = $('#suhu_input').val();
+    if (defSuhu == "0") {
+        defSuhu = "55"
+    }
+    updateGabah({suhu: defSuhu});
 }
 
 function startSend () {
-    console.log('start')
+    defStatus = "start";
+    updateGabah({status_mesin: defStatus});
 }
 
 function stopSend () {
-    console.log('stop')
+    defStatus = "stop";
+    updateGabah({status_mesin: defStatus});
+}
+
+function updateGabah (payload) {
+    var gabahPayload = payload;
+    $.ajax({
+        url: "/update",
+        type: 'post',
+        contentType: "application/json",
+        dataType: 'json',
+        data: JSON.stringify(gabahPayload),
+        success: function(result){
+            console.log(result);
+        }
+    })
 }

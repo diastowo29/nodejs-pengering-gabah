@@ -12,7 +12,7 @@ router.get('/list', function(req, res, next) {
 })
 
 router.get('/status', function(req, res, next) {
-  console.log(req)
+  console.log(req.query)
   gabah_table.findOne().then(all_gabah => {
     dData = all_gabah
     res.status(200).send({
@@ -23,17 +23,20 @@ router.get('/status', function(req, res, next) {
   });
 })
 
-router.get('/new', function(req, res, next) {
+router.post('/update', function(req, res, next) {
   // res.render('list');
-  // gabah_table.create({
-  //   kadar_air_objek: "12.5",
-  //   suhu: "55",
-  //   status_mesin: "stop"
-  // }).then(created_status => {
-  //   res.status(200).send(created_status);
-  // });
-  console.log(req)
-  res.status(200).send({created: true});
+  
+  console.log(req.body)
+  gabah_table.findOne().then(all_gabah => {
+    dData = all_gabah
+    gabah_table.update(req.body,{
+      where: {
+        id: dData.id
+      }
+    }).then(gabah_table_update => {
+      res.status(200).send(gabah_table_update);
+    })
+  });
 
 })
 
