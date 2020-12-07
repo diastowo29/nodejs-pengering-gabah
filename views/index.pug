@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1= title
+  p Selamat datang di Web #{title}
+  .row
+    .col-md-12
+      label Setpoint Kadar Air
+    .col-md-3.form-inline
+      input(class="form-control" type="number" style="margin-right: 10px;" value=0)
+      input(class="form-control btn-primary" type="button" value="Kirim")
+    .col-md-12
+      label Referensi Suhu
+    .col-md-3.form-inline.form-group
+      input(class="form-control" type="number" style="margin-right: 10px;" value=0)
+      input(class="form-control btn-primary" type="button" value="Kirim")
+    .col-md-12.form-inline.form-group
+      input(class="form-control btn-primary inline-space" type="button" value="Start")
+      input(class="form-control btn-danger inline-space" type="button" value="Stop")
+      input(class="form-control btn-primary inline-space" type="button" value="Clear")
+      input(class="form-control btn-primary" type="button" value="Database")
+    .col-md-6
+      table(class='table table-bordered table-hover')
+        thead
+          tr
+            th Suhu
+            th Kadar Air Objek
+            th Kadar Air Humidity dan Moisture
+            th Kelembapan
+            th PWM Heater
+        thead
+          tr
+            td 0
+            td 0
+            td 0
+            td 0
+            td 0
