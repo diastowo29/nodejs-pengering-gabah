@@ -12,6 +12,7 @@ router.get('/list', function(req, res, next) {
 })
 
 router.get('/status', function(req, res, next) {
+  console.log(req)
   gabah_table.findOne().then(all_gabah => {
     dData = all_gabah
     res.status(200).send({
